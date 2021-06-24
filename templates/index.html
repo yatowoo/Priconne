@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Priconne Toolbox</h2>
+
+<form action="/index.html" method="POST">
+  <label for="tp_boost">Boss TP Boost:</label><br>
+  <input type="text" id="tp_boost" name="tp_boost" value="30"><br>
+  <label for="hp_max">Boss Max. HP:</label><br>
+  <input type="text" id="hp_max" name="hp_max" value="2000"><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+<h3>Output</h3>
+{% block content %}
+  <p>{{ data }}</p>
+{% endblock %}
+
+</body>
+</html>
