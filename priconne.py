@@ -7,6 +7,68 @@ from copy import deepcopy as cp_dict
 LV_MAX = 202
 HIT_DAMAGE_LIMIT = 999999
 
+# Clan Battle stage
+CLAN_BATTLE_STAGE = {
+  'start_cycle' : [1, 4, 11, 31, 41],
+  'hp_score':[
+    [(6000000, 1.2), (8000000, 1.2), (10000000, 1.3), (12000000, 1.4), (15000000, 1.5)],
+    [(6000000, 1.6), (8000000, 1.6), (10000000, 1.8), (12000000, 1.9), (15000000, 2.0)],
+    [(12000000, 2.0), (14000000, 2.0), (17000000, 2.4), (19000000, 2.4), (22000000, 2.6)],
+    [(19000000, 3.5), (20000000, 3.5), (23000000, 3.7), (25000000, 3.8), (27000000, 4.0)],
+    [(85000000, 3.5), (90000000, 3.5), (95000000, 3.7), (100000000, 3.8), (110000000, 4.0)]
+  ]
+}
+CLAN_BATTLE_STAGE_DATA = {}
+def clan_battle_stage():
+  total_score = 0
+  # Generate stage score data -> To be STATIC?
+  for stage in range(0,len(CLAN_BATTLE_STAGE['start_cycle'])):
+    stage_name = chr(ord('A')+stage)
+    CLAN_BATTLE_STAGE_DATA[stage_name] = {}
+    stageNow = CLAN_BATTLE_STAGE_DATA[stage_name]
+    stageNow['start_cycle'] = CLAN_BATTLE_STAGE['start_cycle'][stage]
+    stageNow['hp_score'] = CLAN_BATTLE_STAGE['hp_score'][stage]
+    stageNow['start_score'] = total_score
+    score_cycle = 0
+    for hp, score_coeff in CLAN_BATTLE_STAGE['hp_score'][stage]:
+      score_cycle += hp * score_coeff
+    stageNow['score_cycle'] = score_cycle
+    # NOT last stage
+    if stage < len(CLAN_BATTLE_STAGE['start_cycle']) - 1:
+      stageNow['n_cycle'] = CLAN_BATTLE_STAGE['start_cycle'][stage+1] - CLAN_BATTLE_STAGE['start_cycle'][stage]
+      stageNow['score_stage'] = stageNow['n_cycle'] * score_cycle
+      total_score += stageNow['score_stage']
+    else:
+      stageNow['n_cycle'] = 0
+      stageNow['score_stage'] = 1000 * stageNow['score_cycle']
+  return CLAN_BATTLE_STAGE_DATA
+def clan_battle_progress(score):
+  progress = {'stage':'A', 'cycle':1, 'boss':1, 'hp_current': 6000000}
+  if(not CLAN_BATTLE_STAGE_DATA):
+    clan_battle_stage()
+  # Loop by ABCDE
+  for stage in sorted(CLAN_BATTLE_STAGE_DATA.keys()):
+    data = CLAN_BATTLE_STAGE_DATA[stage]
+    if(score >= data['start_score'] + data['score_stage']):
+      continue
+    progress['stage'] = stage
+    delta_score = score - data['start_score']
+    delta_cycle = int(delta_score / data['score_cycle'])
+    progress['cycle'] = data['start_cycle'] + delta_cycle
+    delta_score -= delta_cycle * data['score_cycle']
+    scoreCylcleTmp = 0
+    for i in range(0, len(data['hp_score'])):
+      hp, score_coeff = data['hp_score'][i]
+      if delta_score > scoreCylcleTmp + hp * score_coeff:
+        scoreCylcleTmp += hp * score_coeff
+        continue
+      else:
+        delta_score -= scoreCylcleTmp
+        progress['boss'] = i+1
+        progress['hp_current'] = int(hp -  delta_score / score_coeff)
+        return progress
+  return progress
+
 ##
 # Properties
 ##

@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<form method="POST">
+    <div class="mb-3">
+      <label for="clan_score" class="form-label">Clan Score :</label>
+      <input type="number" class="form-control" name="clan_score" id="clan_score" value="4771700000">
+    </div>
+    <button type="submit" class="btn btn-primary">Calculate</button>
+</form>
+
+<div class="mt-5 p-2 bg-light border">
+    <p>{{ data }}</p>
+</div>
+{% endblock %}
