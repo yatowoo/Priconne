@@ -5,10 +5,6 @@ from flask import Flask,request, render_template
 app = Flask('priconne')
 
 @app.route('/',methods=["GET","POST"])
-def playsound():
-  if request.method == 'GET':
-    return render_template('index.html')
-
 @app.route('/index.html',methods=["GET","POST"])
 def query():
   if request.method == 'GET':
