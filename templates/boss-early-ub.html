@@ -1,7 +1,16 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<form method="POST" action="boss-early-ub" onsubmit="return submitForm(this);">
+
+<script>
+  function renderBossEarlyUB(data){
+    const resultNode = document.createElement("p");
+    resultNode.innerHTML = data;
+    return resultNode;
+  }
+</script>
+
+<form method="POST" action="boss-early-ub" onsubmit="return submitForm(this, renderBossEarlyUB);">
     <div class="mb-3">
       <label for="tp_boost" class="form-label">Boss TP Boost :</label>
       <input type="number" class="form-control" name="tp_boost" id="tp_boost" value="70">

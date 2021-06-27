@@ -1,6 +1,7 @@
 import subprocess
 import priconne
 from flask import Flask,request, render_template
+import json
 
 app = Flask('priconne')
 
@@ -14,7 +15,7 @@ def query():
     tpBoost = int(request.form['tp_boost'])
     hpMax = int(request.form['hp_max'])
     data = priconne.boss_early_ub(tpBoost, hpMax)
-    return repr(data)
+    return json.dumps(data)
 
 @app.route('/clan-battle-progress',methods=["GET","POST"])
 def query_clan_battle():
@@ -23,7 +24,7 @@ def query_clan_battle():
   if request.method == 'POST':
     score = int(request.form['clan_score'] )
     data = priconne.clan_battle_progress(score)
-    return repr(data)
+    return json.dumps(data)
 
 
 if __name__ =='__main__':

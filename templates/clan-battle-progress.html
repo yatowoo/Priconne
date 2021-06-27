@@ -1,7 +1,24 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<form method="POST" action="clan-battle-progress" onsubmit="return submitForm(this);">
+
+<script>
+  function renderClanBattleProgress(data){
+    var tableRender = document.createElement('table');
+    tableRender.setAttribute("class","table");
+    Object.entries(JSON.parse(data)).forEach((entry) => {
+      const [key, value] = entry;
+      var tr = tableRender.insertRow(-1);
+      var tabCell = tr.insertCell(-1);
+      tabCell.innerHTML = key;
+      tabCell = tr.insertCell(-1);
+      tabCell.innerHTML = value;
+    });
+    return tableRender;
+  }
+</script>
+
+<form method="POST" action="clan-battle-progress" onsubmit="return submitForm(this, renderClanBattleProgress);">
     <div class="mb-3">
       <label for="clan_score" class="form-label">Clan Score :</label>
       <input type="number" class="form-control" name="clan_score" id="clan_score" value="4771700000">

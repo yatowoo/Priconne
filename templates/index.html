@@ -36,7 +36,7 @@
 <div class="container">
 
 <div class="row mt-5">
-<div class="container-fluid">
+<div class="container-fluid col-md-6 justify-content-center">
 
 <!--APP-->
 {% block content %}{% endblock %}
@@ -50,15 +50,13 @@
 <!--Submit form by XHR-->
 <script>
   "use strict";
-  function submitForm(oFormElement)
+  function submitForm(oFormElement, renderFunc)
   {
     var xhr = new XMLHttpRequest();
     xhr.onload = function(){
       const outputPanel = document.getElementById("output");
       outputPanel.innerHTML = "";
-      const resultNode = document.createElement("p");
-      resultNode.innerHTML = xhr.responseText;
-      outputPanel.appendChild(resultNode);
+      outputPanel.appendChild(renderFunc(xhr.responseText));
     } // success case
     xhr.onerror = xhr.onload // failure case
     xhr.open (oFormElement.method, oFormElement.action, true);
