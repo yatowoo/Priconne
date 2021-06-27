@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<form method="POST">
+<form method="POST" action="boss-early-ub" onsubmit="return submitForm(this);">
     <div class="mb-3">
       <label for="tp_boost" class="form-label">Boss TP Boost :</label>
       <input type="number" class="form-control" name="tp_boost" id="tp_boost" value="70">
@@ -13,7 +13,4 @@
     <button type="submit" class="btn btn-primary">Calculate</button>
 </form>
 
-<div class="mt-5 p-2 bg-light border">
-    <p>{{ data }}</p>
-</div>
 {% endblock %}

@@ -38,10 +38,33 @@
 <div class="row mt-5">
 <div class="container-fluid">
 
+<!--APP-->
 {% block content %}{% endblock %}
 
+<!--Output panel-->
+<div class="mt-5 p-2 bg-light border" id="output"></div>
 </div></div></div>
   
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<!--Submit form by XHR-->
+<script>
+  "use strict";
+  function submitForm(oFormElement)
+  {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function(){
+      const outputPanel = document.getElementById("output");
+      outputPanel.innerHTML = "";
+      const resultNode = document.createElement("p");
+      resultNode.innerHTML = xhr.responseText;
+      outputPanel.appendChild(resultNode);
+    } // success case
+    xhr.onerror = xhr.onload // failure case
+    xhr.open (oFormElement.method, oFormElement.action, true);
+    xhr.send (new FormData (oFormElement));
+    return false;
+  }
+</script>
 </body>
 </html>

@@ -14,7 +14,7 @@ def query():
     tpBoost = int(request.form['tp_boost'])
     hpMax = int(request.form['hp_max'])
     data = priconne.boss_early_ub(tpBoost, hpMax)
-    return render_template('boss-early-ub.html', data=repr(data))
+    return repr(data)
 
 @app.route('/clan-battle-progress',methods=["GET","POST"])
 def query_clan_battle():
@@ -23,7 +23,7 @@ def query_clan_battle():
   if request.method == 'POST':
     score = int(request.form['clan_score'] )
     data = priconne.clan_battle_progress(score)
-    return render_template('clan-battle-progress.html', data=repr(data))
+    return repr(data)
 
 
 if __name__ =='__main__':
