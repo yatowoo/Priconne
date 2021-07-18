@@ -620,7 +620,7 @@ B. 自我挑战：风剑 + (磨血) + 春黑
 注：此轴UB极多，且角色间甚至boss的动作轴具有强关联性，操作空间相当丰富，最优轴尚未达成；凹之前建议再看一眼确认用的是最新版本，若有尝试多次对不上或不稳定的地方及时回复反馈，说不定就是轴的问题。
 [collapse=20210718初步优化轴]
 [url=https://youtu.be/Li3nH2SVNUg]参考视频-0:19击破[/url]
-[img]./mon_202107/13/-64xyuQ2o-fk4dZ1lT3cSqk-2dw.png.medium.jpg[/img]
+[img]./mon_202107/19/-64xyuQ2o-j5yvZ11T1kShs-1k5.jpg.thumb.jpg[/img]
 [/collapse]
 [collapse=Rank bonus前存档]
 参考视频：[url=https://youtu.be/9ymdbQjNl6s]0:19直接击杀后半视频[/url]，[url=https://youtu.be/UmSX1MO-6ek]1:20春黑断A吸血安定线[/url]，[url=https://youtu.be/RpLgf6s24Ns]追梦线剩200W[/url], [url=https://youtu.be/L-TmPSqvXZ0]1:15无暴也能打线[/url]，起点[url=https://youtu.be/o6tUEbNn19M]ストレイぼう[/url]
@@ -646,9 +646,8 @@ B. 自我挑战：风剑 + (磨血) + 春黑
 [b]05.26更新[/b]：[url=https://youtu.be/yCTPZIuNbYg]0:25击杀参考[/url]，反复测试终于找出追梦线0:43贪出S1且不浪费A的操作思路，伤害直接多出200W
 露娜春黑拉满后成刀率约1/2，不要求0:44暴击超过2/3，完全对轴基本稳定击杀
 理论上可能0:29直接UB拍死，个人只打出过0:27
-[collapse=2021.05.26版春黑双花刀时间轴]
 [img]./mon_202105/27/-64xyuQ2o-9hmyXkZ5nT3cSx1-hg.png.medium.jpg[/img]
-[img]./mon_202105/27/-64xyuQ2o-567wXeZ3sT3cSqa-4qw.png[/img]
+[img]./mon_202105/27/-64xyuQ2o-567wXeZ3sT3cSqa-4qw.png.thumb.jpg[/img]
 [b]06.03更新[/b]：0:29有点难凹，完整视频只录到[url=https://youtu.be/NMbyvwJ76NA]0:28击破[/url]
 追求最快击杀0:35露娜最好别贪春花UB，直接最速断，视频里春花0:52和0:35都慢了不少
 轴的变化：
@@ -657,6 +656,7 @@ B. 自我挑战：风剑 + (磨血) + 春黑
 [*]由于位数盾关系1:00-0:43春黑伤害已经极限，只剩下露娜和NNK的伤害可以提升
 [*]现版本强行超越0:29也存在可能性，如0:35贪露娜S2、水电buff后连点露娜春黑，理论上全暴有希望0:31
 [/list]
+[img]./mon_202106/03/-64xyuQ2o-ksavXhZ4pT3cSvk-5kw.jpg.thumb.jpg[/img]
 
 [b]春黑双花刀 1.04亿视频鉴赏[/b]
 来自[url=https://www.youtube.com/watch?v=U6fYYWXzl6c]ゆちゃのん[/url]的极限操作
