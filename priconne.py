@@ -448,16 +448,16 @@ class TLManager:
   FLAG_DEBUG = False
   FLAG_LOGBARRIER = True
   def __init__(self) -> None:
-    statsRec = StatusRecorder(['yukari', 'anna', 'akari', 'nyaru', 'luna'])
+    self.statsRec = StatusRecorder(['yukari', 'anna', 'akari', 'nyaru', 'luna'])
     self.initStats['nyaru'] = {'atk_mag':NYARU['attack'], 'crit_mag':NYARU['critical']}
     self.initStats['boss'] = {'name': '2021/05 C4', 'lv': 115, 'HP': 18000000, 'def_phy': 300, 'def_mag': 290, 'tp_boost':40}
     for k in [x for x in self.statsRec.STATS_NAME if x not in self.initStats['nyaru'].keys()]:
       self.initStats['nyaru'][k] = 0.
-    for name in statsRec.party:
+    for name in self.statsRec.party:
       self.damageRec[name] = []
   # LIST of tuples with format (timestamp, action)
   # action is function or string to call
-  def RunTimeline(timeline):
+  def RunTimeline(self, timeline):
     # Run timeline
     for timestamp, action in timeline:
       # Run Action
@@ -470,4 +470,22 @@ class TLManager:
           globals()['action_attack'](timestamp, name)
         else:
           globals()['action_' + action](timestamp)
+  # Chara skills
+  # Normal attack for all chara
+  def action_attack(self, timestamp, name):
+    charaNow = self.statsRec.getStatus(self.initStats[name], name, timestamp)
+    bossNow = self.statsRec.getStatus(self.initStats['boss'], 'boss', timestamp)
+    # Attack type
+    if(charaNow['atk_phy'] < charaNow['atk_mag']):
+      hits = critical_damage(charaNow['atk_mag'],
+                          critical_rate(charaNow['crit_mag'], bossNow['lv']), charaNow['crit_damage_mag'], 
+                          defense = bossNow['def_mag'], logBarrier=self.FLAG_LOGBARRIER)
+    else:
+      hits = critical_damage(charaNow['atk_phy'],
+                          critical_rate(charaNow['crit_phy'], bossNow['lv']), charaNow['crit_damage_phy'], 
+                          defense = bossNow['def_phy'], logBarrier=self.FLAG_LOGBARRIER)
+    if(self.FLAG_DEBUG):
+      print('Time ' + repr(timestamp) + 's : ' + name + ' attack - ' +repr(hits))
+    self.damageRec[name].append(hits)
+    return hits
 # END - Class TLManager
